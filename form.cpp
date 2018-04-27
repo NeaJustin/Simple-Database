@@ -98,15 +98,5 @@ ostream &operator << (ostream &out, Form &data){
 	out << "Key : " << data.get_key() << endl;
 	return out;
 }
-/*
-int main(){
-	Form test("Hassan", "21","05/27/1997", "Student","Home","He sucks at everythinng");
-        Form test1("Yousuf", "21", "05/27/1997","Student", "Home","He is big ass whole, and fucker");
-	 cout << test << endl;
-	 cout << test1 << endl;
-	if(test == test1) cout << "Both are equal" << endl;
-	else
-		cout << "Both are not equal " << endl;
-}
-*/
+
 
