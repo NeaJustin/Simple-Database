@@ -7,31 +7,8 @@
   Email: mohamedyousufmo@gmail.com
   
 */
-#include<fstream>
-#include<map>
-#include<vector>
-#include "bintree.cpp"
+#include "database.h"
 using namespace std;
-class Database : public Bintree{
-        public:
-                Database(string table_name, Form _root);
-                //this fuction will read all the data from the file
-                //and will insert it to the binary search tree
-                void init();
-                void synch();
-                void encode(string &form);
-                void decode(string &form);
-                string get_db_name(){return table_name;}
-                Form make_form(string form);
-        private:
-                Form _root;
-                ifstream read;
-                ofstream write;
-                string table_name;
-                void help();
-                void add();
-                void h_synch(BinNode* &root, ofstream &write);
-};
 Database::Database(string table_name, Form _root): Bintree(_root){
 
         this->table_name = table_name;
@@ -156,6 +133,7 @@ Form Database::make_form(string form){
         //now return form
         return Form(f[0],f[1],f[2],f[3],f[4],f[5]);
 }
+
 int main(){
         Form root("Root","root","root","root","root","root");
         Database d("tabel.txt",root);
