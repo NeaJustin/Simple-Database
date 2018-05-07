@@ -43,19 +43,24 @@ void Database::init(){
           if(command == "help") help();
           else if(command == "add") add();
           else if(command == "lst") Bintree::print_preorder();
-          else
-                continue;
+          else if(command == "rcd") cout << "# records: " << Bintree::get_size() - 1 << endl;
+	  else if(command == "clr") cout << "\033[2J\033[1;1H" << endl;
+          else 
+                if(command != "stp") help();
         }
+       cout << "Good Bye!" << endl;
        synch();
 }
 void Database::help(){
-    cout << " ------------INSTRUCTIONS-----------" << endl;
-    cout << "| - To add data       -> type 'add' | " << endl;
-    cout << "| - To delete data    -> type 'del' | " << endl;
-    cout << "| - To update data    -> type 'upd' | " << endl;
-    cout << "| - To list all data  -> type 'lst' | " << endl;
-    cout << "| - To close database -> type 'stp' | " << endl;
-    cout << " -----------------------------------  " << endl;
+    cout << " ------------INSTRUCTIONS--------------" << endl;
+    cout << "| - To add data          -> type 'add' | " << endl;
+    cout << "| - To delete data       -> type 'del' | " << endl;
+    cout << "| - To update data       -> type 'upd' | " << endl;
+    cout << "| - To list all data     -> type 'lst' | " << endl;
+    cout << "| - To see # of enteries -> type 'rcd' | " << endl;
+    cout << "| - To clear screen      -> type 'clr' | " << endl;
+    cout << "| - To close database    -> type 'stp' | " << endl;
+    cout << " --------------------------------------  " << endl;
 }
 void Database::add(){
     string cmd ="";
