@@ -114,7 +114,7 @@ void Database::h_synch(BinNode* &root, ofstream &write){
      h_synch(root->right_child,write);
 }
 void Database::encode(string &form){
-        int size = make_form(form).get_name().length() / 2;
+        int size = table_name.length() / 2;
         for(int i = 0; i < form.length(); i++){
                 int a = (int) form[i];
                     a = a - size;
@@ -122,7 +122,7 @@ void Database::encode(string &form){
         }
 }
 void Database::decode(string &form){
-        int size = make_form(form).get_name().length() / 2;
+        int size = table_name.length() / 2;
         for(int i = 0; i < form.length() ; i++){
                 int a = (int) form[i];
                     a = a + size;
