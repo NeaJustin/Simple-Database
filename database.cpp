@@ -45,6 +45,7 @@ void Database::init(){
           else if(command == "lst") Bintree::print_preorder();
           else if(command == "rcd") cout << "# records: " << Bintree::get_size() - 1 << endl;
 	  else if(command == "clr") cout << "\033[2J\033[1;1H" << endl;
+	  else if(command == "del") del();
           else 
                 if(command != "stp") help();
         }
@@ -61,6 +62,13 @@ void Database::help(){
     cout << "| - To clear screen      -> type 'clr' | " << endl;
     cout << "| - To close database    -> type 'stp' | " << endl;
     cout << " --------------------------------------  " << endl;
+}
+void Database::del(){
+   string name = "";
+   cout << "Enter the Name : ";
+   cin >> name;
+   Form d(name,"","","","","");
+   Bintree::del(d);
 }
 void Database::add(){
     string cmd ="";

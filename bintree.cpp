@@ -45,7 +45,8 @@ void Bintree::print_preorder(){
 }
 void Bintree::b_preorder(BinNode* &node){
 	if(node == 0) return;
-        cout << node->value << endl;
+	 if(node->value.get_name() != "Root")
+          cout << node->value << endl;
 	b_preorder(node->left_child);
 	b_preorder(node->right_child);
 }

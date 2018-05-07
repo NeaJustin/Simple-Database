@@ -22,6 +22,7 @@ class Database : public Bintree{
                 string table_name;
                 void help();
                 void add();
+		  void del();
                 void h_synch(BinNode* &root, ofstream &write);
 };
 
