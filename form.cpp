@@ -18,6 +18,8 @@ Form::Form(string name, string age, string dob, string occup, string addr, strin
 	//generate a key
         for(int i = 0; i < name.size(); i++)
 		key = key + (int) name[i];
+        for(int i = 0; i < addr.size(); i++)
+		key = key + (int) addr[i];
 //	cout << "The key is " << key << endl;
 }
 void Form::set_name(string name){
@@ -26,6 +28,9 @@ void Form::set_name(string name){
 	key = 0;
 	for(int i = 0; i < name.size(); i++) 
 		key = key + (int) name[i];
+
+       for(int i = 0; i < addr.size(); i++)
+		key = key + (int) addr[i];
 }
 void Form::set_age(string age){
 	this->age = age;

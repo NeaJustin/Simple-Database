@@ -77,12 +77,18 @@ void Database::del(){
    Bintree::del(d);
 }
 void Database::upd(){
-  string name;
-  cout << "Enter Name : " << endl;
+  string name,addr;
+  cout << "Enter Name : ";
   cin >> name;
-  Form data(name,"","","","","");
+  cout << "Enter address: ";
+  cin >> addr;
+  Form data(name,"","","",addr,"");
   data = Bintree::search(data);
-  if(data.get_name() != "NOT FOUND") cout << data << endl;
+  if(data.get_name() != "NOT FOUND") {
+         cout << "--------------------- RECORD ---------------------" << endl;
+	  cout << data << endl;
+	  cout << "--------------------------------------------------" << endl;
+    }
   else{ 
 	cout << "The name " << name << " is not found! " << endl; 
   	return;
@@ -110,15 +116,22 @@ void Database::upd_(BinNode* &root, Form &data,string update ,string flag){
 	}else{
 		return upd_(root->left_child,data,update ,flag);
 	}
+
 }
 void Database::ser(){
-  string name = "";
+  string name,addr;
   cout << "Enter the Name : ";
   cin >> name;
-  Form data(name,"","","","","");
+  cout << "Enter address: ";
+  cin >> addr;
+  Form data(name,"","","",addr,"");
   data = Bintree::search(data);
-  if(data.get_name() != "NOT FOUND") cout << data << endl;
-  else 
+  if(data.get_name() != "NOT FOUND"){
+         cout << "--------------------- RECORD ---------------------" << endl;
+	  cout << data << endl;
+	  cout << "--------------------------------------------------" << endl;
+  
+    }else 
 	cout << "The name " << name << " is not found! " << endl; 
 }
 void Database::add(){
