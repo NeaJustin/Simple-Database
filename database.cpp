@@ -16,13 +16,13 @@ Database::Database(string table_name, Form _root): Bintree(_root){
         string temp = "";
         read.open(table_name.c_str());
         if(!read.is_open()){
-                cout << "The table " << table_name << " doesn't exists." << endl;
-                cout << "creating new table. " << endl;
+                cout << "The database " << table_name << " doesn't exists." << endl;
+                cout << "creating new database. " << endl;
                 write.open(table_name.c_str());
                 write.close();
-                cout << "Table has been created, now you can start adding the data." << endl;
+                cout << "Database has been created, now you can start adding the data." << endl;
         }else{
-                cout << "The table " << table_name << " exists. " << endl;
+                cout << "The Database " << table_name << " exists. " << endl;
                 while(getline(read,temp)){
                         decode(temp);
                         Form row = make_form(temp);
@@ -30,7 +30,7 @@ Database::Database(string table_name, Form _root): Bintree(_root){
                 }
                 read.close();
         }
-        init();
+        //init();
 }
 void Database::init(){
         cout << "---------------------------------------------------------" << endl;
@@ -39,7 +39,7 @@ void Database::init(){
         cout << "Need help? --> type 'help'." << endl;
         string command = "";
         while(command != "stp"){
-          cout << ">";
+          cout << "Database:"<<table_name << ">";
           cin >> command;
           if(command == "help") help();
           else if(command == "add") add();
@@ -210,8 +210,10 @@ Form Database::make_form(string form){
         //now return form
         return Form(f[0],f[1],f[2],f[3],f[4],f[5]);
 }
-
+/*
 int main(){
         Form root("Root","root","root","root","root","root");
         Database d("tabel.txt",root);
+	 d.init();
 }
+*/
