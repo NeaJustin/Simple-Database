@@ -8,6 +8,7 @@
   
 */
 #include "database.h"
+#include "cout_operator.h"
 using namespace std;
 Database::Database(string table_name, Form _root): Bintree(_root){
 
@@ -44,10 +45,14 @@ void Database::init(){
           else if(command == "add") add();
           else if(command == "lst") Bintree::print_preorder();
           else if(command == "rcd") cout << "# records: " << Bintree::get_size() - 1 << endl;
-	  else if(command == "clr") cout << "\033[2J\033[1;1H" << endl;
-	  else if(command == "del") del();
+  	   else if(command == "clr") cout << "\033[2J\033[1;1H" << endl;
+	   else if(command == "ser") ser();
+	   else if(command == "del") del();
+	   else if(command == "upd") upd();
           else 
-                if(command != "stp") help();
+                if(command != "stp")
+			cout << "Invalid Command, type 'help'." << endl;					
+		  
         }
        cout << "Good Bye!" << endl;
        synch();
@@ -58,6 +63,7 @@ void Database::help(){
     cout << "| - To delete data       -> type 'del' | " << endl;
     cout << "| - To update data       -> type 'upd' | " << endl;
     cout << "| - To list all data     -> type 'lst' | " << endl;
+    cout << "| - To search data       -> type 'ser' | " << endl;
     cout << "| - To see # of enteries -> type 'rcd' | " << endl;
     cout << "| - To clear screen      -> type 'clr' | " << endl;
     cout << "| - To close database    -> type 'stp' | " << endl;
@@ -69,6 +75,51 @@ void Database::del(){
    cin >> name;
    Form d(name,"","","","","");
    Bintree::del(d);
+}
+void Database::upd(){
+  string name;
+  cout << "Enter Name : " << endl;
+  cin >> name;
+  Form data(name,"","","","","");
+  data = Bintree::search(data);
+  if(data.get_name() != "NOT FOUND") cout << data << endl;
+  else{ 
+	cout << "The name " << name << " is not found! " << endl; 
+  	return;
+  }
+  cout << "What do you want to update (name,age,dob,addr,occup,note)." << endl;
+  string update;
+  cin >> update;
+  cout << "Enter the data : " << endl;
+  string data_;
+  cin >> data_;
+  upd_(Bintree::root, data, data_,update);
+}
+void Database::upd_(BinNode* &root, Form &data,string update ,string flag){
+ if(data == root->value){
+	if(flag == "name") root->value.set_name(update);	
+  else if(flag == "age")root->value.set_age(update);
+  else if(flag == "dob")root->value.set_dob(update);
+  else if(flag == "addr")root->value.set_addr(update);
+  else if(flag == "occup")root->value.set_occup(update);
+  else if(flag == "note")root->value.set_note(update);
+  else 
+	cout << "Invalid command!" << endl;	
+	}else if(data >= root->value){
+		return  upd_(root->right_child,data,update ,flag);
+	}else{
+		return upd_(root->left_child,data,update ,flag);
+	}
+}
+void Database::ser(){
+  string name = "";
+  cout << "Enter the Name : ";
+  cin >> name;
+  Form data(name,"","","","","");
+  data = Bintree::search(data);
+  if(data.get_name() != "NOT FOUND") cout << data << endl;
+  else 
+	cout << "The name " << name << " is not found! " << endl; 
 }
 void Database::add(){
     string cmd ="";

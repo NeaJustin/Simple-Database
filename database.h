@@ -4,6 +4,7 @@
 #include<map>
 #include<vector>
 #include "bintree.h"
+enum UpdateFlag{name,age,dob,addr,occup,note};
 class Database : public Bintree{
         public:
                 Database(string table_name, Form _root);
@@ -23,6 +24,9 @@ class Database : public Bintree{
                 void help();
                 void add();
 		  void del();
+	         void ser();
+		  void upd();
+		  void upd_(BinNode* &root,Form &data ,string update ,string flag);
                 void h_synch(BinNode* &root, ofstream &write);
 };
 
