@@ -73,7 +73,10 @@ void Database::del(){
    string name = "";
    cout << "Enter the Name : ";
    cin >> name;
-   Form d(name,"","","","","");
+   string addr;
+   cout << "Enter the address : ";
+   cin >> addr;
+   Form d(name,"","","",addr,"");
    Bintree::del(d);
 }
 void Database::upd(){

@@ -32,7 +32,7 @@ void Table::init(){
        while(db != "stop"){
          AddDatabase:
         cout <<  "Enter the name of the database : " << endl;
-         cout << ">";
+         cout << "Table >";
 	 cin >> db;
   	  if(db != "stop")
 	  table.insert(make_pair(db, new Database(db,root)));
@@ -43,7 +43,7 @@ void Table::init(){
 	ls();
        cout << "THE SIZE " << table.size() << endl;
        while(command != "stop"){
-          cout << ">";
+          cout << "Table >";
 	   cin >> command;
           if(command == "cd"){
  	       cout << "which database you want use ? " << endl;
@@ -51,7 +51,8 @@ void Table::init(){
 		table[command]->init();	
 	}else if(command == "ls") ls();
 	 else if(command == "adb") goto AddDatabase;
-	else
+	 else if(command == "dlb") del();
+         else
 		continue;	
 	}
 	synch(); 
@@ -65,6 +66,14 @@ void Table::synch(){
 	it++;
    }
   write.close();
+}
+void Table::del(){
+  string db;
+  cout << "Name of the database : ";
+  cin >> db;
+  if(remove(db.c_str()) != 0){cout << "Invalid database " << endl;}
+  else
+     table.erase(db);
 }
 void Table::ls(){
   map<string,Database *>::iterator it = table.begin();
