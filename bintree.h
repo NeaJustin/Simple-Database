@@ -22,11 +22,11 @@ class Bintree{
 	unsigned int get_size(){ return size;}
 	
 	protected:
-	void b_add(Form value, BinNode* &node);
+	void b_add(Form &value, BinNode* &node);
 	void b_preorder(BinNode* &node);
 	void b_leftsub(BinNode* &node, BinNode *&actual);
-	Form b_search(Form value, BinNode* &node);
-	void b_del(Form value,BinNode* &node);
+	Form b_search(Form &value, BinNode* &node);
+	void b_del(Form &value,BinNode* &node);
 	BinNode* root;
 	unsigned int size;
 };

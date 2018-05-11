@@ -1,3 +1,2 @@
-perris
-riverside
-san-bernardino
+student_record
+water_department

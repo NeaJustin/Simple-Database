@@ -13,6 +13,7 @@ class Table{
 		void synch();
 		void ls();
 		void del();
+		void help();
 		string table_name;
 		ifstream read;
 		ofstream write;

@@ -14,7 +14,7 @@ void Bintree::add(Form value){
 	b_add(value, root);
 	size = size + 1;
 }
-void Bintree::b_add(Form value, BinNode* &node){
+void Bintree::b_add(Form &value, BinNode* &node){
         if(node == 0){
 	//	cout << value << endl;	
 		node = new BinNode(value);
@@ -29,7 +29,7 @@ void Bintree::b_add(Form value, BinNode* &node){
 Form Bintree::search(Form value){
 	return b_search(value, root);
 }
-Form Bintree::b_search(Form value, BinNode* &node){
+Form Bintree::b_search(Form &value, BinNode* &node){
 	if(node == 0)  return Form("NOT FOUND","","","","","");
 	if(value == node->value){
 		return node->value;
@@ -66,7 +66,7 @@ void Bintree::b_leftsub(BinNode* &node, BinNode* &actual){
 		b_leftsub(node->right_child, actual);
 	}
 }
-void Bintree::b_del(Form value,BinNode* &node){
+void Bintree::b_del(Form &value,BinNode* &node){
       if(value == node->value){
 		//if it has no child
 		size--; 
