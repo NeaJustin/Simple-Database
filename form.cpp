@@ -43,6 +43,12 @@ void Form::set_occup(string occup){
 }
 void Form::set_addr(string addr){
 	this->addr = addr;
+	key = 0;
+	//generate a key
+        for(int i = 0; i < name.size(); i++)
+		key = key + (int) name[i];
+        for(int i = 0; i < addr.size(); i++)
+		key = key + (int) addr[i];
 }
 void Form::set_note(string note){
 	this->note = note;

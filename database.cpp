@@ -39,7 +39,7 @@ void Database::init(){
         cout << "Need help? --> type 'help'." << endl;
         string command = "";
         while(command != "stp"){
-          cout << "Database:"<<table_name << ">";
+          cout << "[Database:"<<table_name << "]>";
           cin >> command;
           if(command == "help") help();
           else if(command == "add") add();

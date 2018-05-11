@@ -33,7 +33,7 @@ void Table::init(){
           while(db != "stop"){
           AddDatabase:
           cout <<  "Enter the name of the database : " << endl;
-          cout << "Table >";
+          cout << "[Table]->";
 	  cin >> db;
   	  if(db != "stop")
 	  table.insert(make_pair(db, new Database(db,root)));
@@ -43,7 +43,7 @@ void Table::init(){
 	  ls();
           cout << "Number of databases : " << table.size() << endl;
          while(command != "stop"){
-           cout << "Table >";
+           cout << "[Table]>";
 	   cin >> command;
           if(command == "cd"){
  	       cout << "which database you want use ? " << endl;
