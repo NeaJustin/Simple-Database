@@ -2,8 +2,21 @@
 using namespace std;
 Form root("Root","root","root","root","root","root");
 Table::Table(string table_name){
+ 
 	this->table_name = table_name;  
         string tb_name = "";
+	 string c , d= "";	
+	bool done = false;       
+	while(done != true){
+       cout << " Authentication " << endl;
+       cout << " Username : " ;
+	cin >> c;
+       cout << " Password : " ;
+	cin >> d;
+	if(USERNAME == c && PASSWORD == d) done = true;
+	else 
+		cout << "Wrong username or password." << endl; 	
+	}
 	read.open(table_name.c_str());
 	if(!read.is_open()){
 		cout << "The table doesnt " << table_name << " doesnt exits" << endl;
@@ -24,7 +37,6 @@ Table::Table(string table_name){
 	init();
 }
 void Table::init(){
-      cout << "Note , if you add, you have to close database and table, compile again to perform search , delete and update fuctions. " << endl; 
       string command = "";
       string db = ""; 
 	if(empty){
@@ -33,14 +45,16 @@ void Table::init(){
           while(db != "stop"){
           AddDatabase:
           cout <<  "Enter the name of the database : " << endl;
-          cout << "[Table]->";
+         // cout << "[Table]->";
 	  cin >> db;
+  	 
   	  if(db != "stop")
 	  table.insert(make_pair(db, new Database(db,root)));
          }
        }
           cout << "Now, you can add data to database ('stop' to terminate). " << endl;
 	  ls();
+	   goBack:
           cout << "Number of databases : " << table.size() << endl;
          while(command != "stop"){
            cout << "[Table]>";
@@ -52,8 +66,12 @@ void Table::init(){
  	       else
 	       	table[command]->init();	
 	}else if(command == "ls") ls();
-	 else if(command == "adb") goto AddDatabase;
+	 else if(command == "adb"){ 
+		goto AddDatabase;
+			
+	}
 	 else if(command == "dlb") del();
+	else if(command == "clr") cout << "\033[2J\033[1;1H" << endl;
 	 else if(command == "help") help();
          else
 		if(command != "stop") cout << "Invalid command, type 'help'. " << endl;	
@@ -72,9 +90,10 @@ void Table::synch(){
 }
 void Table::help(){
  cout << "---------------- Instructions ----------------------" << endl;
- cout <<"|  - To list the table        -> type 'lst'          |" << endl;
+ cout <<"|  - To list the table        -> type 'ls'           |" << endl;
  cout <<"|  - To switch to database    -> type 'cd'           |" << endl;
  cout <<"|  - To add new database      -> type 'adb'          |" << endl;
+ cout <<"|  - To clear screen          -> type 'clr'          |" << endl;
  cout <<"|  - To delete a database     -> type 'dlb'          |" << endl;
  cout <<"|  - To terminate the databse -> type 'stop'         |" << endl;
  cout <<" ----------------------------------------------------" << endl;
@@ -92,7 +111,7 @@ void Table::ls(){
    //print list 	
    cout << "------------ Databases ------------" << endl;
     while(it != table.end()){
-        cout << it->first << endl;
+        cout << it->first << " -- No of Records: " << it->second->get_size() - 1 <<endl;
 	it++;
    }
    cout << "-----------------------------------" << endl;

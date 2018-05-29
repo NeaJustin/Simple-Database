@@ -1,12 +1,4 @@
-/*
-  A simple database that is stores data
-  in encrypted, this database is uses bintree
-  to store data when programm is running.
-  I did this, just for fun. :)
-  Authour: Mohamed 
-  Email: mohamedyousufmo@gmail.com
-  
-*/
+
 #include "database.h"
 #include "cout_operator.h"
 using namespace std;
